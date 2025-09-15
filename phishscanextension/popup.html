@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PhishScan</title>
+  <link rel="stylesheet" href="popup.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="brand">
+      <div class="logo">🔍</div>
+      <div class="title">
+        <h1>PhishScan</h1>
+        <p>Quick URL check</p>
+      </div>
+    </header>
+
+    <div class="card">
+      <label for="urlInput" class="label">URL to scan</label>
+      <div class="input-wrap">
+        <input id="urlInput" type="text" placeholder="https://example.com" />
+        <button id="scanBtn" class="btn">
+          <span class="btn-label">Scan</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <div id="result" class="result" role="status" aria-live="polite">
+        <!-- Result text appears here -->
+      </div>
+      
+      <a href="http://localhost:5000/history" class="history-link" target="_blank">
+        View scan history
+      </a>
+    </div>
+
+    <footer class="foot">
+      <small>Powered by your local PhishSCAN backend</small>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

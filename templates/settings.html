@@ -1,0 +1,170 @@
+{% extends "layout.html" %}
+
+{% block title %}Settings - PhishSCAN{% endblock %}
+
+{% block content %}
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="/home" style="text-decoration: none; color: inherit;">
+            <div class="logo">PhishSCAN</div>
+        </a>
+        <ul class="nav-links">
+            <li class="nav-item"><a href="/home">Dashboard</a></li>
+            <li class="nav-item"><a href="/history">History</a></li>
+            <li class="nav-item"><a href="/settings" class="active">Settings</a></li>
+            <li class="theme-toggle">
+                <label class="theme-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="theme-slider"></span>
+                </label>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<main class="container">
+    <div class="dashboard-header fade-in">
+        <h1>Settings</h1>
+        <p>Customize your PhishSCAN experience</p>
+    </div>
+
+    <div class="settings-section hover-lift">
+        <h2>Appearance</h2>
+        
+        <div class="setting-item">
+            <div class="setting-info">
+                <div class="setting-title">Dark Mode</div>
+                <div class="setting-description">Switch between light and dark themes</div>
+            </div>
+            <div class="setting-action">
+                <label class="theme-switch">
+                    <input type="checkbox" id="theme-toggle-settings">
+                    <span class="theme-slider"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="setting-item">
+            <div class="setting-info">
+                <div class="setting-title">Animations</div>
+                <div class="setting-description">Enable or disable UI animations</div>
+            </div>
+            <div class="setting-action">
+                <label class="theme-switch">
+                    <input type="checkbox" id="animations-toggle" checked>
+                    <span class="theme-slider"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="settings-section hover-lift">
+        <h2>Privacy & Security</h2>
+        
+        <div class="setting-item">
+            <div class="setting-info">
+                <div class="setting-title">Clear Scan History</div>
+                <div class="setting-description">Remove all your previously scanned URLs</div>
+            </div>
+            <div class="setting-action">
+                <button class="btn-primary" id="clear-history-btn"><span>Clear History</span></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="settings-section hover-lift">
+        <h2>About</h2>
+        
+        <div class="setting-item">
+            <div class="setting-info">
+                <div class="setting-title">Version</div>
+                <div class="setting-description">PhishSCAN v1.0.0</div>
+            </div>
+        </div>
+        
+        <div class="setting-item">
+    <div class="setting-info">
+        <div class="setting-title">Privacy Policy</div>
+        <div class="setting-description">View our data handling practices</div>
+    </div>
+    <div class="setting-action">
+        <a href="{{ url_for('static', filename='docs/privacy.pdf') }}" target="_blank" class="btn-secondary">
+            <span>View</span>
+        </a>
+    </div>
+</div>
+
+<div class="setting-item">
+    <div class="setting-info">
+        <div class="setting-title">Terms of Service</div>
+        <div class="setting-description">Read our terms and conditions</div>
+    </div>
+    <div class="setting-action">
+        <a href="{{ url_for('static', filename='docs/TCs.pdf') }}" target="_blank" class="btn-secondary">
+            <span>View</span>
+        </a>
+    </div>
+</div>
+
+    </div>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PhishSCAN</h3>
+                <p>Advanced phishing detection with explainable AI and real-time protection.</p>
+                <div class="footer-social">
+                    <a href="/home" class="social-icon">D</a>
+                    <a href="/history" class="social-icon">H</a>
+                    <a href="/settings" class="social-icon">S</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="/home" class="footer-link">Dashboard</a>
+                    <a href="/history" class="footer-link">Scan History</a>
+                    <a href="/settings" class="footer-link">Settings</a>
+                </div>
+            </div>
+            
+           
+                <div class="footer-section">
+    <h3>Resources</h3>
+    <div class="footer-links">
+        <a href="{{ url_for('static', filename='docs/Documentation.pdf') }}" target="_blank" class="footer-link">Documentation</a>
+        <a href="{{ url_for('static', filename='docs/api.pdf') }}" target="_blank" class="footer-link">API Reference</a>
+        <a href="{{ url_for('static', filename='docs/privacy.pdf') }}" target="_blank" class="footer-link">Privacy Policy</a>
+        <a href="{{ url_for('static', filename='docs/TCs.pdf') }}" target="_blank" class="footer-link">Terms of Service</a>
+    </div>
+</div>
+
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <div class="footer-links">
+    <a href="mailto:support@phishscan.com" class="footer-link">support@phishscan.com</a>
+    <span class="footer-link">📞 +61 2 9123 4567</span>
+    <span class="footer-link">📍 Level 12, 1 Market Street, Sydney, NSW 2000, Australia</span>
+</div>
+
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-credits">
+                <p>© 2025 PhishSCAN | Protecting Users from Dangerous URLs</p>
+                <p>Created by Abbas, Hamza, Dev, Fahad</p>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+{% endblock %}

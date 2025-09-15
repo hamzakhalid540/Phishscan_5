@@ -1,0 +1,26 @@
+[
+  {
+    "url": "http://127.0.0.1:5000/home",
+    "status": "dangerous",
+    "confidence": 0.98,
+    "timestamp": "2025-09-11 23:38:28"
+  },
+  {
+    "url": "http://127.0.0.1:5000/static/docs/TCs.pdf",
+    "status": "dangerous",
+    "confidence": 0.98,
+    "timestamp": "2025-09-11 23:38:54"
+  },
+  {
+    "url": "https://www.google.com/",
+    "status": "safe",
+    "confidence": 0.95,
+    "timestamp": "2025-09-11 23:39:09"
+  },
+  {
+    "url": "https://www.microsoft.com",
+    "status": "safe",
+    "confidence": 0.95,
+    "timestamp": "2025-09-11 23:39:39"
+  }
+]

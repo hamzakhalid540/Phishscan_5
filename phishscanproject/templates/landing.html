@@ -1,0 +1,269 @@
+
+{% extends "layout.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+{% endblock %}
+
+{% block content %}
+<div id="threejs-background"></div>
+
+<nav class="main-nav">
+    <div class="nav-container">
+        <div class="logo">PhishSCAN</div>
+        <ul class="nav-links">
+            <li class="nav-item"><a href="/home">Dashboard</a></li>
+            <li class="nav-item"><a href="/history">History</a></li>
+            <li class="nav-item"><a href="/settings">Settings</a></li>
+            <li class="theme-toggle">
+                <label class="theme-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="theme-slider"></span>
+                </label>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="animated-headline">Protecting Users from <span class="typing-animation"></span></h1>
+        <p>Advanced phishing detection with explainable AI and real-time protection</p>
+        <div class="cta-buttons">
+            <button class="btn-large primary" onclick="location.href='/home'"><span>Get Started</span></button>
+            <button class="btn-large" id="demo-btn"><span>View Demo</span></button>
+        </div>
+    </div>
+    <div class="hero-visual">
+        <div class="floating-cards">
+            <div class="floating-card safe-card card-3d">
+                <span>✓ Safe URL</span>
+                <div class="card-detail">Legitimate websites with proper security</div>
+            </div>
+            <div class="floating-card warning-card card-3d">
+                <span>⚠ Suspicious URL</span>
+                <div class="card-detail">Potential risk requiring caution</div>
+            </div>
+            <div class="floating-card danger-card card-3d">
+                <span>✗ Dangerous URL</span>
+                <div class="card-detail">Confirmed phishing threats</div>
+            </div>
+            <div class="floating-card secure-card card-3d">
+                <span>Secure Connection</span>
+                <div class="card-detail">Encrypted and verified sites</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <h2>Why PhishSCAN Stands Out</h2>
+    <div class="feature-grid">
+        <div class="feature-item card-3d">
+            <h3>Real-Time Protection</h3>
+            <p>Instant scanning of URLs as you browse with our browser extension</p>
+            <div class="feature-glow"></div>
+        </div>
+        <div class="feature-item card-3d">
+            <h3>Explainable AI</h3>
+            <p>Understand why a URL was flagged with transparent, human-readable explanations</p>
+            <div class="feature-glow"></div>
+        </div>
+        <div class="feature-item card-3d">
+            <h3>Multi-Layer Defense</h3>
+            <p>Combines blacklist verification, heuristic analysis, and machine learning</p>
+            <div class="feature-glow"></div>
+        </div>
+        <div class="feature-item card-3d">
+            <h3>Privacy Focused</h3>
+            <p>Local processing where possible with GDPR-compliant data handling</p>
+            <div class="feature-glow"></div>
+        </div>
+    </div>
+</section>
+
+<section class="stats">
+    <div class="stats-container">
+        <div class="stat-item">
+            <div class="stat-number" id="accuracy-rate">98.4</div>
+            <div class="stat-label">Accuracy Rate</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" id="urls-scanned">0</div>
+            <div class="stat-label">URLs Protected</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" id="threats-blocked">0</div>
+            <div class="stat-label">Threats Blocked</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" id="avg-scan-time">0.2</div>
+            <div class="stat-label">Avg Scan Time (s)</div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="cta-content">
+        <h2>Ready to Secure Your Browsing?</h2>
+        <p>Join thousands of users protected by PhishSCAN's advanced detection system</p>
+        <button class="btn-large primary" onclick="location.href='/home'"><span>Start Protecting Yourself Now</span></button>
+    </div>
+</section>
+
+<!-- Demo Modal -->
+<div id="demoModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Try Our Extension</h2>
+    <p>For the best experience, download and try our PhishSCAN browser extension. It scans URLs in real time and protects you as you browse.</p>
+    <br>
+    <button class="btn-large primary" onclick="location.href='/static/extension/phishscan-extension.zip'">
+      <span>Download Extension</span>
+    </button>
+  </div>
+</div>
+
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PhishSCAN</h3>
+                <p>Advanced phishing detection with explainable AI and real-time protection.</p>
+                <div class="footer-social">
+                    <a href="/home" class="social-icon">D</a>
+                    <a href="/history" class="social-icon">H</a>
+                    <a href="/settings" class="social-icon">S</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="/home" class="footer-link">Dashboard</a>
+                    <a href="/history" class="footer-link">Scan History</a>
+                    <a href="/settings" class="footer-link">Settings</a>
+                </div>
+            </div>
+            
+            
+                <div class="footer-section">
+    <h3>Resources</h3>
+    <div class="footer-links">
+        <a href="{{ url_for('static', filename='docs/Documentation.pdf') }}" target="_blank" class="footer-link">Documentation</a>
+        <a href="{{ url_for('static', filename='docs/api.pdf') }}" target="_blank" class="footer-link">API Reference</a>
+        <a href="{{ url_for('static', filename='docs/privacy.pdf') }}" target="_blank" class="footer-link">Privacy Policy</a>
+        <a href="{{ url_for('static', filename='docs/TCs.pdf') }}" target="_blank" class="footer-link">Terms of Service</a>
+    </div>
+</div>
+
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <div class="footer-links">
+    <a href="mailto:support@phishscan.com" class="footer-link">support@phishscan.com</a>
+    <span class="footer-link">📞 +61 2 9123 4567</span>
+    <span class="footer-link">📍 Level 12, 1 Market Street, Sydney, NSW 2000, Australia</span>
+</div>
+
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-credits">
+                <p>© 2025 PhishSCAN | Protecting Users from Dangerous URLs</p>
+                <p>Created by Abbas, Hamza, Dev, Fahad</p>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/landing-animations.js') }}"></script>
+<script src="{{ url_for('static', filename='js/threejs-background.js') }}"></script>
+<script>
+    // Fetch real stats from the server
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('/api/stats')
+            .then(response => response.json())
+            .then(data => {
+                // Update the stats with real data
+                document.getElementById('urls-scanned').textContent = data.total_scans || 0;
+                
+                // Calculate threats blocked percentage
+                const threatsBlockedPercentage = data.total_scans > 0 ? 
+                    Math.round((data.threats_blocked / data.total_scans) * 100) : 0;
+                document.getElementById('threats-blocked').textContent = threatsBlockedPercentage;
+                
+                // Animate the numbers
+                animateValue(document.getElementById('urls-scanned'), 0, data.total_scans || 0, 1500);
+                animateValue(document.getElementById('threats-blocked'), 0, threatsBlockedPercentage, 1500);
+            })
+            .catch(error => {
+                console.error('Error fetching stats:', error);
+                // Fallback to default values if API fails
+                animateValue(document.getElementById('urls-scanned'), 0, 12487, 1500);
+                animateValue(document.getElementById('threats-blocked'), 0, 94, 1500);
+            });
+            
+        // Animate fixed values
+        animateValue(document.getElementById('accuracy-rate'), 0, 98.4, 1500);
+        animateValue(document.getElementById('avg-scan-time'), 0, 0.2, 1500);
+    });
+    
+    // Function to animate number counting
+    function animateValue(element, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const value = progress * (end - start) + start;
+            
+            if (end % 1 === 0) {
+                element.textContent = Math.floor(value);
+            } else {
+                element.textContent = value.toFixed(1);
+            }
+            
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            } else {
+                if (end % 1 === 0) {
+                    element.textContent = end;
+                } else {
+                    element.textContent = end.toFixed(1);
+                }
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var modal = document.getElementById("demoModal");
+    var btn = document.getElementById("demo-btn");
+    var span = document.getElementsByClassName("close")[0];
+
+    // Open modal when clicking "View Demo"
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // Close modal when clicking ×
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends "layout.html" %}
+
+{% block title %}PhishSCAN Dashboard{% endblock %}
+
+{% block content %}
+<nav class="main-nav">
+    <div class="nav-container">
+        <div class="logo">PhishSCAN</div>
+        <ul class="nav-links">
+            <li class="nav-item"><a href="/home" class="active">Dashboard</a></li>
+            <li class="nav-item"><a href="/history">History</a></li>
+            <li class="nav-item"><a href="/settings">Settings</a></li>
+            <li class="theme-toggle">
+                <label class="theme-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="theme-slider"></span>
+                </label>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<main class="container dashboard">
+    <div class="dashboard-header fade-in">
+        <h1>Phishing URL Detection Dashboard</h1>
+        <p>Protect yourself from malicious websites with our advanced detection system</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card fade-in delay-1">
+            <div class="stat-value">98.4%</div>
+            <div class="stat-label">Accuracy Rate</div>
+        </div>
+        <div class="stat-card fade-in delay-2">
+            <div class="stat-value">12,487</div>
+            <div class="stat-label">URLs Scanned</div>
+        </div>
+        <div class="stat-card fade-in delay-3">
+            <div class="stat-value">94%</div>
+            <div class="stat-label">Threats Blocked</div>
+        </div>
+        <div class="stat-card fade-in delay-4">
+            <div class="stat-value">0.2s</div>
+            <div class="stat-label">Average Scan Time</div>
+        </div>
+    </div>
+
+    <div class="scanner slide-in-right">
+        <h2>Scan a URL</h2>
+        <div class="url-input">
+            <input type="text" placeholder="Enter URL to scan (e.g., https://example.com)" id="url-input">
+            <button class="scan-btn"><span>Scan URL</span></button>
+        </div>
+        <div class="progress-bar" id="progress-bar" style="display: none;"></div>
+    </div>
+
+    <div class="results slide-in-left" id="results-container" style="display: none;">
+        <div class="result-header">
+            <div class="status-indicator" id="status-indicator"></div>
+            <h3 id="result-title">Scan Results</h3>
+        </div>
+        <div class="result-details">
+            <p id="result-message"></p>
+            <p>Confidence: <strong id="confidence-value"></strong></p>
+        </div>
+        <div class="feature-analysis">
+            <h4>Feature Analysis</h4>
+            <ul class="feature-list" id="feature-list"></ul>
+        </div>
+        <div class="shap-visualization" id="shap-container">
+            <h4>Explanation</h4>
+            <div id="shap-visualization"></div>
+        </div>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PhishSCAN</h3>
+                <p>Advanced phishing detection with explainable AI and real-time protection.</p>
+                <div class="footer-social">
+                    <a href="/home" class="social-icon">D</a>
+                    <a href="/history" class="social-icon">H</a>
+                    <a href="/settings" class="social-icon">S</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="/home" class="footer-link">Dashboard</a>
+                    <a href="/history" class="footer-link">Scan History</a>
+                    <a href="/settings" class="footer-link">Settings</a>
+                </div>
+            </div>
+            
+           
+                <div class="footer-section">
+    <h3>Resources</h3>
+    <div class="footer-links">
+        <a href="{{ url_for('static', filename='docs/Documentation.pdf') }}" target="_blank" class="footer-link">Documentation</a>
+        <a href="{{ url_for('static', filename='docs/api.pdf') }}" target="_blank" class="footer-link">API Reference</a>
+        <a href="{{ url_for('static', filename='docs/privacy.pdf') }}" target="_blank" class="footer-link">Privacy Policy</a>
+        <a href="{{ url_for('static', filename='docs/TCs.pdf') }}" target="_blank" class="footer-link">Terms of Service</a>
+    </div>
+</div>
+
+            </div>
+            
+            <div class="footer-section">
+                <div class="footer-links">
+    <a href="mailto:support@phishscan.com" class="footer-link">support@phishscan.com</a>
+    <span class="footer-link">📞 +61 2 9123 4567</span>
+    <span class="footer-link">📍 Level 12, 1 Market Street, Sydney, NSW 2000, Australia</span>
+</div>
+
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-credits">
+                <p>© 2025 PhishSCAN | Protecting Users from Dangerous URLs</p>
+                <p>Created by Abbas, Hamza, Dev, Fahad</p>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,434 @@
+/* Landing Page Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    color: var(--text-color);
+    background: var(--bg-color);
+}
+
+#threejs-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.hero {
+    display: flex;
+    min-height: 100vh;
+    padding: 0 5%;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 600px;
+    z-index: 10;
+}
+
+.animated-headline {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.typing-animation {
+    color: var(--primary-color);
+    border-right: 3px solid var(--primary-color);
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--primary-color); }
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.btn-large {
+    padding: 1.2rem 2.5rem;
+    border-radius: 50px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1.1rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-large::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-dark), var(--primary-color));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.btn-large:hover::before {
+    opacity: 1;
+}
+
+.btn-large.primary {
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+    color: white;
+}
+
+.btn-large.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(52, 152, 219, 0.4);
+}
+
+.btn-large:not(.primary) {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-large:not(.primary):hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-large span {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-visual {
+    position: relative;
+    width: 50%;
+    height: 500px;
+}
+
+.floating-cards {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.floating-card {
+    position: absolute;
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.floating-card:hover {
+    transform: translateZ(20px) rotate3d(1, 1, 1, 5deg);
+    box-shadow: var(--shadow-hover);
+}
+
+.safe-card {
+    color: var(--success-color);
+    top: 10%;
+    left: 5%;
+    animation: float 8s ease-in-out infinite;
+    border-left: 4px solid var(--success-color);
+}
+
+.warning-card {
+    color: var(--warning-color);
+    top: 40%;
+    right: 10%;
+    animation: float 9s ease-in-out infinite 1s;
+    border-left: 4px solid var(--warning-color);
+}
+
+.danger-card {
+    color: var(--danger-color);
+    bottom: 15%;
+    left: 20%;
+    animation: float 7s ease-in-out infinite 0.5s;
+    border-left: 4px solid var(--danger-color);
+}
+
+.secure-card {
+    color: var(--primary-color);
+    bottom: 45%;
+    right: 5%;
+    animation: float 10s ease-in-out infinite 1.5s;
+    border-left: 4px solid var(--primary-color);
+}
+
+.card-detail {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+}
+
+.features {
+    padding: 6rem 5%;
+    background: var(--bg-color);
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 4rem;
+    color: var(--text-color);
+    font-weight: 800;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    background: var(--card-bg);
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.feature-item:hover {
+    transform: translateY(-15px) rotate3d(1, 1, 1, 5deg);
+    box-shadow: var(--shadow-hover);
+}
+
+.feature-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--primary-color), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.feature-item:hover .feature-glow {
+    opacity: 0.1;
+}
+
+.feature-item h3 {
+    margin-bottom: 1.2rem;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.feature-item p {
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.stats {
+    padding: 5rem 5%;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 2rem;
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, #ffffff, #e0f7fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.cta-section {
+    padding: 6rem 5%;
+    background: var(--card-bg);
+    text-align: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.cta-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    font-weight: 800;
+}
+
+.cta-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    color: var(--text-light);
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 8rem;
+    }
+    
+    .hero-content {
+        margin-bottom: 4rem;
+    }
+    
+    .hero-visual {
+        width: 100%;
+        height: 400px;
+    }
+    
+    .animated-headline {
+        font-size: 2.8rem;
+    }
+    
+    .cta-buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .animated-headline {
+        font-size: 2.2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-large {
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    .floating-card {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .card-detail {
+        font-size: 0.8rem;
+    }
+    
+    .features h2 {
+        font-size: 2.2rem;
+    }
+    
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-number {
+        font-size: 2.8rem;
+    }
+}
+
+/* Modal background */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  background: rgba(0,0,0,0.6); 
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal box */
+.modal-content {
+  background: #fff;
+  color: #2c3e50;
+  margin: 15% auto;
+  padding: 30px;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0px 6px 20px rgba(0,0,0,0.2);
+  animation: slideDown 0.4s ease;
+}
+
+/* Close button */
+.close {
+  float: right;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #888;
+}
+.close:hover {
+  color: #000;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+@keyframes slideDown {
+  from {transform: translateY(-30px); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
+}

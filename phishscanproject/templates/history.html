@@ -1,0 +1,150 @@
+{% extends "layout.html" %}
+
+{% block title %}Scan History - PhishSCAN{% endblock %}
+
+{% block content %}
+<nav class="main-nav">
+    <div class="nav-container">
+        <div class="logo">PhishSCAN</div>
+        <ul class="nav-links">
+            <li class="nav-item"><a href="/home">Dashboard</a></li>
+            <li class="nav-item"><a href="/history" class="active">History</a></li>
+            <li class="nav-item"><a href="/settings">Settings</a></li>
+            <li class="theme-toggle">
+                <label class="theme-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="theme-slider"></span>
+                </label>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<main class="container">
+    <div class="dashboard-header fade-in">
+        <h1>Scan History</h1>
+        <p>Review your previously scanned URLs and their results</p>
+    </div>
+
+    <div class="history-section hover-lift">
+        <h2>Recent Scans</h2>
+        {% if history and history|length > 0 %}
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>URL</th>
+                    <th>Status</th>
+                    <th>Confidence</th>
+                    <th>Date & Time</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for scan in history %}
+                <tr class="fade-in delay-{{ loop.index % 4 }}">
+                    <td>{{ scan.url }}</td>
+                    <td>
+                        {% if scan.status == 'safe' %}
+                        <span class="status-badge badge-safe">Safe</span>
+                        {% elif scan.status == 'suspicious' %}
+                        <span class="status-badge badge-warning">Suspicious</span>
+                        {% else %}
+                        <span class="status-badge badge-danger">Phishing</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ (scan.confidence * 100)|round(2) }}%</td>
+                    <td>{{ scan.timestamp }}</td>
+                    <td>
+                        <!-- ✅ Direct link to Flask download route -->
+                        <a href="/api/download/{{ loop.index0 }}" class="btn-primary">Download</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-icon"></div>
+            <p>No scan history yet. Start scanning URLs to see them here.</p>
+            <br><br>
+            <a href="/home" class="btn-primary"><span>Scan a URL</span></a>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- ✅ Bar Chart -->
+    <div class="chart-section hover-lift">
+        <h2>Status Distribution</h2>
+        <div class="chart-container-bar">
+            <canvas id="history-chart"></canvas>
+        </div>
+    </div>
+
+    <!-- ✅ Line Chart -->
+    <div class="chart-section hover-lift">
+        <h2>Scans Over Time</h2>
+        <div class="chart-container-line">
+            <canvas id="scan-distribution-chart"></canvas>
+        </div>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PhishSCAN</h3>
+                <p>Advanced phishing detection with explainable AI and real-time protection.</p>
+                <div class="footer-social">
+                    <a href="/home" class="social-icon">D</a>
+                    <a href="/history" class="social-icon">H</a>
+                    <a href="/settings" class="social-icon">S</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="/home" class="footer-link">Dashboard</a>
+                    <a href="/history" class="footer-link">Scan History</a>
+                    <a href="/settings" class="footer-link">Settings</a>
+                </div>
+            </div>
+            
+            
+                <div class="footer-section">
+    <h3>Resources</h3>
+    <div class="footer-links">
+        <a href="{{ url_for('static', filename='docs/Documentation.pdf') }}" target="_blank" class="footer-link">Documentation</a>
+        <a href="{{ url_for('static', filename='docs/api.pdf') }}" target="_blank" class="footer-link">API Reference</a>
+        <a href="{{ url_for('static', filename='docs/privacy.pdf') }}" target="_blank" class="footer-link">Privacy Policy</a>
+        <a href="{{ url_for('static', filename='docs/TCs.pdf') }}" target="_blank" class="footer-link">Terms of Service</a>
+    </div>
+</div>
+
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <div class="footer-links">
+                    <a href="mailto:support@phishscan.com" class="footer-link">support@phishscan.com</a>
+                    <span class="footer-link">📞 +61 2 9123 4567</span>
+                    <span class="footer-link">📍 Level 12, 1 Market Street, Sydney, NSW 2000, Australia</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-credits">
+                <p>© 2025 PhishSCAN | Protecting Users from Dangerous URLs</p>
+                <p>Created by Abbas, Hamza, Dev, Fahad</p>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/history.js') }}"></script>
+{% endblock %}

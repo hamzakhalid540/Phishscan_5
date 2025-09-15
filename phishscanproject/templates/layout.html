@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PhishSCAN - Protecting Users from Dangerous URLs{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <script src="{{ url_for('static', filename='lib/anime.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/three.min.js') }}"></script>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="threejs-loader"></div>
+        <div class="loader-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+            <div class="loader-text">PhishSCAN</div>
+            <div class="loader-subtext">Protecting users from phishing threats</div>
+            <div class="loading-bar-container" style="width: 300px; margin-top: 20px;">
+                <div class="loading-bar" style="width: 0%; height: 6px; background: var(--primary-color); border-radius: 3px; transition: width 0.3s ease;"></div>
+            </div>
+        </div>
+    </div>
+    
+    {% block content %}{% endblock %}
+    
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+
+    <script>
+        // Loading screen functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const loadingBar = document.querySelector('.loading-bar');
+            
+            // Simulate loading progress
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                loadingBar.style.width = Math.min(progress, 100) + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                        }, 500);
+                    }, 300);
+                }
+            }, 200);
+        });
+    </script>
+</body>
+</html>
